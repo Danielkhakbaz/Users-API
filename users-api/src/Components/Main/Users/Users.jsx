@@ -1,42 +1,43 @@
 import React, { Component } from "react";
 import Input from "../../Common/Input/Input";
 import Table from "../../Common/Table/Table";
-import http from "../../../Services";
-import { apiURL } from "../../../Config.json";
+import Http from "../../../Services";
+import { ApiURL } from "../../../Config.json";
 
 class Users extends Component {
     state = {
-        users: [],
-        inputValue: "",
+        Users: [],
+        InputValue: "",
     };
     render() {
-        const { users, inputValue } = this.state;
+        const { Users, InputValue } = this.state;
         return (
             <>
                 <Input
                     name="Value"
                     label="Value"
                     type="number"
-                    value={inputValue}
-                    onChange={this.handleInputChange}
-                    onClick={this.handleSubmitButton}
+                    value={InputValue}
+                    onChange={this.HandleInputChange}
+                    onClick={this.HandleSubmitButton}
                 />
-                <Table users={users} />
+                <Table Users={Users} />
             </>
         );
     }
-    handleInputChange = (e) => {
-        const inputValue = e.currentTarget.value;
-        this.setState({ inputValue });
+    HandleInputChange = (e) => {
+        const InputValue = e.currentTarget.value;
+        this.setState({ InputValue });
     };
-    handleSubmitButton = async () => {
-        const users = [];
-        for (let i = 0; i < this.state.inputValue; ++i) {
-            const { data } = await http.get(apiURL);
-            users.push(data);
-            this.setState({ users });
+    HandleSubmitButton = async () => {
+        const { InputValue } = this.state;
+
+        const Users = [];
+        for (let i = 0; i < InputValue; ++i) {
+            const { data: User } = await Http.get(ApiURL);
+            Users.push(User);
+            this.setState({ Users });
         }
-        console.log(this.state.users);
     };
 }
 

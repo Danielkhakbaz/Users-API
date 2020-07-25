@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default {
-    get: axios.get,
-    post: axios.post,
-    put: axios.put,
-    delete: axios.delete,
+    Get: axios.get,
+    Post: axios.post,
+    Put: axios.put,
+    Delete: axios.delete,
 };
